@@ -81,12 +81,6 @@ public class HomeController {
         return "Home";
     }
 
-
-    @GetMapping("/secured")
-    public String secured() {
-        return "Secured";
-    }
-
     @GetMapping("/callback")
     public String callback(@RequestParam(name = "code") String code) {
         System.out.println(code);
