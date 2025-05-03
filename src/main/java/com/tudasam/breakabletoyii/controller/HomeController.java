@@ -1,15 +1,15 @@
 package com.tudasam.breakabletoyii.controller;
 
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestClient;
 
 import static org.springframework.security.oauth2.client.web.client.RequestAttributeClientRegistrationIdResolver.clientRegistrationId;
 
 
-
+//@CrossOrigin
 @RestController
-
 public class HomeController {
 
     private final RestClient restClient;
@@ -17,7 +17,14 @@ public class HomeController {
     public HomeController(RestClient restClient) {
         this.restClient = restClient;
     }
+
+    @GetMapping("/login")
+    public String login() {
+        return "Please log in with Spotify.";
+    }
+
     //GET Personal Info
+    @CrossOrigin(origins="http://localhost:3000/user",allowedHeaders = "*",allowCredentials="true")
     @GetMapping("/me")
     public String me() {
         return restClient.get()
@@ -62,6 +69,7 @@ public class HomeController {
         return restClient.get()
                 .uri("https://api.spotify.com/v1/me/top/artists")
                 .attributes(clientRegistrationId("spotify"))
+                .header("Access-Control-Allow-Credentials","true")
                 .retrieve()
                 .body(String.class);
     }
@@ -75,12 +83,13 @@ public class HomeController {
         return "Authentication Successful";
     }
 
-
+    @CrossOrigin(origins="http://localhost:3000/user",allowedHeaders = "*",allowCredentials="true")
     @GetMapping("/")
     public String home() {
         return "Home";
     }
 
+    @CrossOrigin(origins="http://localhost:3000/user",allowedHeaders = "*",allowCredentials="true")
     @GetMapping("/callback")
     public String callback(@RequestParam(name = "code") String code) {
         System.out.println(code);
