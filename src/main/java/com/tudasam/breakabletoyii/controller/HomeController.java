@@ -7,8 +7,6 @@ import org.springframework.web.client.RestClient;
 
 import static org.springframework.security.oauth2.client.web.client.RequestAttributeClientRegistrationIdResolver.clientRegistrationId;
 
-
-//@CrossOrigin
 @RestController
 public class HomeController {
 
