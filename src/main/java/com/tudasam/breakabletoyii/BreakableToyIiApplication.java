@@ -38,8 +38,10 @@ public class BreakableToyIiApplication {
 		return new WebMvcConfigurer() {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/me").allowedOrigins("http://localhost:3000");
+				registry.addMapping("/me").allowedOrigins("http://localhost:3000","http://127.0.0.1:3000/").allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS");
 				registry.addMapping("/").allowedOrigins("http://localhost:3000");
+				registry.addMapping("/callback").allowedOrigins("http://localhost:3000");
+				registry.addMapping("https://accounts.spotify.com/authorize").allowedOrigins("http://localhost:3000");
 			}
 		};
 	}

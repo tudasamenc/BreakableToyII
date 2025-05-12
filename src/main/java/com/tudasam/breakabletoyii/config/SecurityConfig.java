@@ -36,7 +36,6 @@ public class SecurityConfig {
                 )
                 .csrf(AbstractHttpConfigurer::disable)
                 .oauth2Client(Customizer.withDefaults());
-                //.oauth2Login(Customizer.withDefaults());
         return http.build();
     }
 
