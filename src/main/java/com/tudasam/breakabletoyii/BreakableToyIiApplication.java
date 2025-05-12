@@ -21,14 +21,6 @@ public class BreakableToyIiApplication {
 	public RestClient restClient(OAuth2AuthorizedClientManager authorizedClientManager) {
 		OAuth2ClientHttpRequestInterceptor interceptor = new OAuth2ClientHttpRequestInterceptor(authorizedClientManager);
 		return RestClient.builder()
-				//.defaultHeaders(
-				//		httpHeaders ->{
-				//			httpHeaders.set("Access-Control-Allow-Origin","http://localhost:3000/user");
-				//			httpHeaders.set("Access-Control-Allow-Credentials", "true");
-				//			httpHeaders.set("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT,OPTIONS");
-				//			httpHeaders.set("Access-Control-Max-Age", "3600");
-				//		}
-				//)
 				.requestInterceptor(interceptor)
 				.build();
 	}
@@ -38,10 +30,10 @@ public class BreakableToyIiApplication {
 		return new WebMvcConfigurer() {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/me").allowedOrigins("http://localhost:3000","http://127.0.0.1:3000/").allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS");
-				registry.addMapping("/").allowedOrigins("http://localhost:3000");
-				registry.addMapping("/callback").allowedOrigins("http://localhost:3000");
-				registry.addMapping("https://accounts.spotify.com/authorize").allowedOrigins("http://localhost:3000");
+				registry.addMapping("/me").allowedOrigins("http://127.0.0.1:3000/").allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS");
+				registry.addMapping("/").allowedOrigins("http://127.0.0.1:3000/");
+				registry.addMapping("/callback").allowedOrigins("http://127.0.0.1:3000/");
+				registry.addMapping("https://accounts.spotify.com/authorize").allowedOrigins("http://127.0.0.1:3000/");
 			}
 		};
 	}
