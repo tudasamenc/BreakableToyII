@@ -77,8 +77,6 @@ public class HomeController {
     @PostMapping("/auth/spotify")
     String authenticateSpotify() {
         System.out.println("authenticateSpotify");
-        //spotifyService.requestAccessToken(codeCallback);
-
         return "Authentication Successful";
     }
 
