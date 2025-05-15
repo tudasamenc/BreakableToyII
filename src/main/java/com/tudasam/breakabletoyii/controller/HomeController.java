@@ -34,11 +34,24 @@ public class HomeController {
     //GET specific artist
     @GetMapping("/artists/{id}")
     String findArtist(@PathVariable String id){
-        return restClient.get()
+        String profile,albums,songs,s;
+        profile= restClient.get()
                 .uri("https://api.spotify.com/v1/artists/"+id)
                 .attributes(clientRegistrationId("spotify"))
                 .retrieve()
                 .body(String.class);
+        albums= restClient.get()
+                .uri("https://api.spotify.com/v1/artists/"+id+"/albums")
+                .attributes(clientRegistrationId("spotify"))
+                .retrieve()
+                .body(String.class);
+        songs = restClient.get()
+                .uri("https://api.spotify.com/v1/artists/"+id+"/top-tracks")
+                .attributes(clientRegistrationId("spotify"))
+                .retrieve()
+                .body(String.class);
+        s="{\"profile\":"+profile+",\"albums\":"+albums+",\"songs\":"+songs+"}";
+        return s;
     }
     //GET specific album
     @GetMapping("/albums/{id}")

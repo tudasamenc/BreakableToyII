@@ -32,6 +32,7 @@ public class BreakableToyIiApplication {
 			public void addCorsMappings(CorsRegistry registry) {
 				registry.addMapping("/me").allowedOrigins("http://127.0.0.1:3000/").allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS");
 				registry.addMapping("/me/top/artists").allowedOrigins("http://127.0.0.1:3000/");
+				registry.addMapping("/artists/**").allowedOrigins("http://127.0.0.1:3000/");
 				registry.addMapping("/").allowedOrigins("http://127.0.0.1:3000/");
 				registry.addMapping("/callback").allowedOrigins("http://127.0.0.1:3000/");
 				registry.addMapping("https://accounts.spotify.com/authorize").allowedOrigins("http://127.0.0.1:3000/");
