@@ -1,7 +1,4 @@
 package com.tudasam.breakabletoyii.controller;
-
-
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestClient;
 
@@ -63,6 +60,16 @@ public class HomeController {
                 .retrieve()
                 .body(String.class);
         return "["+Album+"]";
+    }
+
+    @GetMapping("/albums/{sq}")
+    String Search(@PathVariable String sq){
+        String SearchResponse = restClient.get()
+                .uri("https://api.spotify.com/v1/search?q="+sq+"&type=artist,track,album")
+                .attributes(clientRegistrationId("spotify"))
+                .retrieve()
+                .body(String.class);
+        return SearchResponse;
     }
 
     // GET Most played artists
