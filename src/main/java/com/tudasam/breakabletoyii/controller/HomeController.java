@@ -24,11 +24,12 @@ public class HomeController {
     //GET Personal Info
     @GetMapping("/me")
     public String me() {
-        return restClient.get()
+        String user = restClient.get()
                 .uri("https://api.spotify.com/v1/me")
                 .attributes(clientRegistrationId("spotify"))
                 .retrieve()
                 .body(String.class);
+        return "["+user+"]";
     }
 
     //GET specific artist
@@ -50,27 +51,18 @@ public class HomeController {
                 .attributes(clientRegistrationId("spotify"))
                 .retrieve()
                 .body(String.class);
-        s="{\"profile\":"+profile+",\"albums\":"+albums+",\"songs\":"+songs+"}";
+        s="{\"profile\":["+profile+"],\"albums\":"+albums+",\"songs\":"+songs+"}";
         return s;
     }
     //GET specific album
     @GetMapping("/albums/{id}")
     String findAlbum(@PathVariable String id){
-        return restClient.get()
+        String Album = restClient.get()
                 .uri("https://api.spotify.com/v1/albums/"+id)
                 .attributes(clientRegistrationId("spotify"))
                 .retrieve()
                 .body(String.class);
-    }
-
-    //GET specific album tracks
-    @GetMapping("/albums/{id}/tracks")
-    String findAlbumTracks(@PathVariable String id){
-        return restClient.get()
-                .uri("https://api.spotify.com/v1/albums/"+id+"/tracks")
-                .attributes(clientRegistrationId("spotify"))
-                .retrieve()
-                .body(String.class);
+        return "["+Album+"]";
     }
 
     // GET Most played artists
@@ -97,9 +89,9 @@ public class HomeController {
     }
 
     @GetMapping("/callback")
-    public String callback(@RequestParam(name = "code") String code) {
-        System.out.println(code);
-        return "Welcome " + code;
+    public String callback() {
+        System.out.println("Callback Ok");
+        return "Welcome Callback Ok";
     }
 
 }
