@@ -34,7 +34,7 @@ public class BreakableToyIiApplication {
 				registry.addMapping("/me/top/artists").allowedOrigins("http://127.0.0.1:3000/");
 				registry.addMapping("/artists/**").allowedOrigins("http://127.0.0.1:3000/");
 				registry.addMapping("/albums/**").allowedOrigins("http://127.0.0.1:3000/");
-				registry.addMapping("/search").allowedOrigins("http://127.0.0.1:3000/");
+				registry.addMapping("/search/**").allowedOrigins("http://127.0.0.1:3000/");
 				registry.addMapping("/").allowedOrigins("http://127.0.0.1:3000/");
 				registry.addMapping("/callback").allowedOrigins("http://127.0.0.1:3000/");
 				registry.addMapping("https://accounts.spotify.com/authorize").allowedOrigins("http://127.0.0.1:3000/");

@@ -62,7 +62,7 @@ public class HomeController {
         return "["+Album+"]";
     }
 
-    @GetMapping("/albums/{sq}")
+    @GetMapping("/search/{sq}")
     String Search(@PathVariable String sq){
         String SearchResponse = restClient.get()
                 .uri("https://api.spotify.com/v1/search?q="+sq+"&type=artist,track,album")
